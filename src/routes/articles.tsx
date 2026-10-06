@@ -20,7 +20,7 @@ export const Route = createFileRoute("/articles")({
 function Articles() {
   const { profile } = usePersona();
   const list = getRecommendedArticles(profile, getAllArticles().length);
-  const [lead, ...rest] = list;
+  const [lead, ...rest] = list as [typeof list[number], ...typeof list];
   return (
     <div>
       <PageHeader eyebrow="The Revive Journal" title={<>Ideas, guides & <Accent>inspiration</Accent></>} />

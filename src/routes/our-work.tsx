@@ -20,7 +20,7 @@ export const Route = createFileRoute("/our-work")({
 function OurWork() {
   const { profile } = usePersona();
   const list = getRecommendedProjects(profile, getAllProjects().length);
-  const [hero, ...rest] = list;
+  const [hero, ...rest] = list as [typeof list[number], ...typeof list];
   return (
     <div>
       <PageHeader eyebrow="Portfolio" title={<>Homes we've <Accent>revived</Accent></>} intro={profile.designQuiz.completed ? `Ordered for you, starting with ${profile.designQuiz.primaryStyle}.` : "A selection of recent work across Tampa Bay and Central Florida."} />

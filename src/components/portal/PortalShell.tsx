@@ -14,7 +14,7 @@ function Wordmark() {
   );
 }
 
-function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+function NavLinks({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const { profile } = usePersona();
   const items: { to: string; label: string }[] = [
     { to: "/", label: "Home" },
@@ -61,7 +61,7 @@ function PersonaSwitcher() {
   );
 }
 
-function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarBody({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const { profile } = usePersona();
   return (
     <div className="flex h-full flex-col">

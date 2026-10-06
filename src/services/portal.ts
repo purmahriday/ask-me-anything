@@ -3,7 +3,7 @@
 import { ARTICLES, MATERIALS, PERSONAS, PROJECTS, type CustomerProfile, type Material } from "./mockData";
 
 export function getCustomerPortalProfile(id: string): CustomerProfile {
-  return PERSONAS.find((p) => p.id === id) ?? PERSONAS[0];
+  return PERSONAS.find((p) => p.id === id) ?? PERSONAS[0]!;
 }
 
 export interface NextStep { eyebrow: string; title: string; body: string; cta: string; to: string }
