@@ -4,7 +4,13 @@ Build the customer-facing Revive portal as a premium, editorial, personalized ex
 
 ## Visual direction
 
-Modeled on the reference screenshot: warm soft-neutral backgrounds, elegant serif headings with clean sans-serif body text, large editorial photography, generous whitespace, subtle rounded cards, minimal borders, understated icons. Persistent left sidebar on desktop, collapsing on tablet, bottom/drawer nav on mobile. AI-generated warm interior photography and material swatches throughout.
+Matches the existing Revive Style Studio quiz (revivequiz.lovable.app) so the whole experience feels like one product:
+
+- **Colors**: warm off-white background (~#F6F5F1), deep charcoal text (~#1F2328), Revive blue accent (~#0B6FB3) for buttons, links, italic highlights and thin rules; soft gray dividers. Optional thin blue announcement bar at the top ("Your complete interior remodeling solution").
+- **Typography**: Playfair Display for headlines, with key words in blue italic (e.g. "Welcome back, *Sarah*"); Cinzel in wide-tracked small caps for eyebrows, nav labels and buttons ("THE REVIVE STYLE STUDIO", "BEGIN"); Inter light/regular for body.
+- **Shapes and details**: square-cornered solid blue buttons with a soft blue glow shadow; short blue hairline under eyebrows; arched photo frames with thin blue outline, overlapping circular and framed inset photos; minimal borders, no heavy rounded cards.
+- **Brand elements**: REVIVE wordmark, "Winner of 23 NARI CotY Awards" laurel badge, "Tampa ◆ Orlando" footer line.
+- **Layout**: generous whitespace, editorial split layouts. Persistent left sidebar on desktop in the same style, collapsing on tablet, drawer nav on mobile. Warm, light-oak interior photography consistent with the quiz imagery.
 
 ## Architecture
 
