@@ -1,17 +1,7 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useContext, useEffect, useState, type ReactNode } from "react";
 import { getCustomerPortalProfile, hasConsultation, requestConsultation, getConsultationRequest } from "@/services/portal";
-import type { ConsultationRequest } from "@/services/consultation";
 import type { CustomerProfile } from "@/services/mockData";
-
-interface Ctx {
-  profile: CustomerProfile;
-  setPersona: (id: string) => void;
-  toggleSaved: (materialId: string) => void;
-  consultationBooked: boolean;
-  consultationRequest: ConsultationRequest | undefined;
-  bookConsultation: (request: ConsultationRequest) => boolean;
-}
-const PersonaContext = createContext<Ctx | null>(null);
+import { PersonaContext } from "@/lib/persona-context";
 
 export function PersonaProvider({ children }: { children: ReactNode }) {
   const [id, setId] = useState("jennifer");
