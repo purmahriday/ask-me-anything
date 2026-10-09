@@ -16,3 +16,4 @@
 - Visual style mirrors the existing Revive Style Studio quiz via tokens and `caps`/`arch` utilities in `src/styles.css` — keeps the brand consistent.
 - Consultation requests use an in-memory service adapter exposed through persona context; this keeps demo data private to the session and leaves the Vivo integration replaceable.
 - Style-to-image selection lives in the portal adapter so homepage presentation follows the profile without embedding data-selection logic.
+- Supplied Revive editorial content and original screenshot crops are served through the portal adapter, keeping copy and assets separate from the page layout.

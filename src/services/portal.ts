@@ -2,6 +2,9 @@
 // without touching UI components.
 import { ARTICLES, MATERIALS, PERSONAS, PROJECTS, images, type CustomerProfile, type Material } from "./mockData";
 import type { ConsultationRequest } from "./consultation";
+import { reviveContent } from "./reviveContent";
+
+export const getReviveContent = () => reviveContent;
 
 // Mock-only request adapter: Vivo will replace this in-memory store.
 const consultationRequests = new Map<string, ConsultationRequest>();
