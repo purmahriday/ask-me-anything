@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { usePersona } from "@/lib/persona";
 import { images } from "@/services/mockData";
 import {
-  getCustomerNextStep, getRecommendedArticles, getRecommendedMaterials, getRecommendedProjects, getSavedMaterials,
+  getCustomerNextStep, getRecommendedArticles, getRecommendedMaterials, getRecommendedProjects, getSavedMaterials, getStyleImagery,
 } from "@/services/portal";
 import {
   Accent, ArchPhoto, ArticleCard, EmptyState, Eyebrow, MaterialCard, PrimaryLink, ProjectCard, SectionHead, TextLink,
@@ -33,6 +33,7 @@ const heroCopy: Record<string, string> = {
 function Home() {
   const { profile: p, toggleSaved } = usePersona();
   const next = getCustomerNextStep(p);
+  const styleImagery = getStyleImagery(p);
   const saved = getSavedMaterials(p.materials.savedIds);
   const recMat = getRecommendedMaterials(p);
   const recProj = getRecommendedProjects(p);
@@ -51,7 +52,7 @@ function Home() {
             <p className="caps mt-6 text-[11px] text-primary">Your style · {p.designQuiz.primaryStyle}</p>
           )}
         </div>
-        <ArchPhoto src={images.kitchen} alt="Light oak kitchen with marble waterfall island" inset={images.detail} circle={images.bath} />
+        <ArchPhoto {...styleImagery} />
       </section>
 
       {/* Next step */}

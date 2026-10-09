@@ -1,17 +1,22 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { getCustomerPortalProfile } from "@/services/portal";
+import { getCustomerPortalProfile, hasConsultation, requestConsultation, getConsultationRequest } from "@/services/portal";
+import type { ConsultationRequest } from "@/services/consultation";
 import type { CustomerProfile } from "@/services/mockData";
 
 interface Ctx {
   profile: CustomerProfile;
   setPersona: (id: string) => void;
   toggleSaved: (materialId: string) => void;
+  consultationBooked: boolean;
+  consultationRequest: ConsultationRequest | undefined;
+  bookConsultation: (request: ConsultationRequest) => boolean;
 }
 const PersonaContext = createContext<Ctx | null>(null);
 
 export function PersonaProvider({ children }: { children: ReactNode }) {
   const [id, setId] = useState("jennifer");
   const [saved, setSaved] = useState<Record<string, string[]>>({});
+  const [, refreshRequests] = useState(0);
 
   useEffect(() => {
     const s = localStorage.getItem("revive-persona");
@@ -25,6 +30,13 @@ export function PersonaProvider({ children }: { children: ReactNode }) {
     <PersonaContext.Provider
       value={{
         profile,
+        consultationBooked: hasConsultation(profile),
+        consultationRequest: getConsultationRequest(profile.id),
+        bookConsultation: (request) => {
+          const accepted = requestConsultation(profile, request);
+          refreshRequests((revision) => revision + 1);
+          return accepted;
+        },
         setPersona: (n) => { setId(n); localStorage.setItem("revive-persona", n); },
         toggleSaved: (m) => {
           const cur = profile.materials.savedIds;
