@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import type React from "react";
 import type { ConsultationRequest } from "@/services/consultation";
 import type { CustomerProfile } from "@/services/mockData";
 
@@ -13,4 +14,5 @@ export interface PersonaContextValue {
 
 // Keep context identity outside the Fast Refresh component module. Otherwise a
 // refreshed consumer can read a new context while the mounted provider holds the old one.
-export const PersonaContext = createContext<PersonaContextValue | null>(null);
+const g = globalThis as { __revivePersonaContext?: React.Context<PersonaContextValue | null> };
+export const PersonaContext = (g.__revivePersonaContext ??= createContext<PersonaContextValue | null>(null));
