@@ -11,6 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import { PersonaProvider } from "@/lib/persona";
+import { Toaster } from "@/components/ui/sonner";
 import { PortalShell } from "@/components/portal/PortalShell";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -127,6 +128,7 @@ function RootComponent() {
         <PortalShell>
           <Outlet />
         </PortalShell>
+        <Toaster position="top-center" />
       </PersonaProvider>
     </QueryClientProvider>
   );

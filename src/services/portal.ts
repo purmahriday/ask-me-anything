@@ -71,4 +71,6 @@ export function getRecommendedArticles(p: CustomerProfile, limit = 3) {
 }
 
 export const getAllProjects = () => PROJECTS;
+// Latest completed projects; Vivo will supply these in date order later.
+export const getLatestProjects = (limit = 6) => [...PROJECTS].reverse().slice(0, limit);
 export const getAllArticles = () => ARTICLES;
