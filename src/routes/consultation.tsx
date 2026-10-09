@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,7 @@ function ConsultationFlow() {
   const { profile, consultationBooked, consultationRequest, bookConsultation } = usePersona();
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
   const [form, setForm] = useState<ConsultationRequest>({ rooms: [], timeline: "", budgetRange: "", streetAddress: "", zipCode: "", firstName: profile.firstName, lastName: profile.lastName, email: "", phone: "", contactPreference: "", consent: false });
   const set = <K extends keyof ConsultationRequest>(key: K, value: ConsultationRequest[K]) => setForm((current) => ({ ...current, [key]: value }));
   const names = ["Rooms", "Timing", "Budget", "Address", "Contact"];
@@ -57,7 +59,7 @@ function ConsultationFlow() {
       <div className="mb-10 flex gap-2" aria-label={`Step ${step + 1} of 5: ${names[step]}`}>
         {names.map((name, i) => <div key={name} className="min-w-0 flex-1"><span className={`block h-1 ${i <= step ? "bg-primary" : "bg-muted"}`} /><span className={`mt-2 block text-[10px] ${i === step ? "text-primary" : "text-muted-foreground"}`}>{name}</span></div>)}
       </div>
-      <form onSubmit={(event) => { event.preventDefault(); if (!validConsultationStep(form, step)) return; if (step < 4) setStep(step + 1); else { bookConsultation(form); setSubmitted(true); } }}>
+      <form onSubmit={(event) => { event.preventDefault(); if (!validConsultationStep(form, step)) return; if (step < 4) setStep(step + 1); else { setSubmitted(true); bookConsultation(form); toast.success("We got your info!", { description: "Someone on our team will get back to you shortly." }); void navigate({ to: "/" }); } }}>
         <h1 id="consultation-title" className="text-center text-3xl leading-tight md:text-4xl">{questions[step]}</h1>
         <p className="mt-4 text-center text-sm text-muted-foreground">{helpers[step]}</p>
         <div className="my-8 min-h-64">
