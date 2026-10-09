@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { Menu, MessageCircle, Send } from "lucide-react";
+import { CalendarDays, Check, Menu, MessageCircle, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { usePersona } from "@/lib/persona";
 import { PERSONAS } from "@/services/mockData";
@@ -120,14 +121,19 @@ function AskDrawer() {
 
 export function PortalShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const { consultationBooked } = usePersona();
   return (
     <div className="min-h-screen bg-background">
-      <div className="caps bg-primary py-2 text-center text-[10px] text-primary-foreground">Your complete interior remodeling solution</div>
       <div className="flex">
         <aside className="sticky top-0 hidden h-screen w-64 shrink-0 border-r border-sidebar-border bg-sidebar lg:block">
           <SidebarBody />
         </aside>
         <div className="min-w-0 flex-1">
+          <div className="sticky top-0 z-30 flex justify-end border-b border-border bg-background/95 px-5 py-3 backdrop-blur md:px-12">
+            <Button asChild className="caps h-auto min-h-10 whitespace-normal rounded-none px-5 py-3 text-[10px]">
+              <Link to="/consultation">{consultationBooked ? <Check /> : <CalendarDays />}{consultationBooked ? "Consultation requested" : "Book a consultation"}</Link>
+            </Button>
+          </div>
           <header className="flex items-center justify-between border-b border-border px-5 py-4 lg:hidden">
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger aria-label="Open menu" className="p-2"><Menu className="size-5" /></SheetTrigger>
