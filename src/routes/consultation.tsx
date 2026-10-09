@@ -19,6 +19,11 @@ export const Route = createFileRoute("/consultation")({
 });
 
 function Consultation() {
+  const { profile } = usePersona();
+  return <ConsultationFlow key={profile.id} />;
+}
+
+function ConsultationFlow() {
   const { profile, consultationBooked, consultationRequest, bookConsultation } = usePersona();
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);

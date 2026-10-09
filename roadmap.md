@@ -1,4 +1,4 @@
-- [ ] Add always-accessible consultation flow and prevent duplicate demo requests.
-- [ ] Personalize home imagery from the completed style profile.
-- [ ] Recreate supplied Our Work content with original photos and logos.
-- [ ] Remove the top blue banner and verify navigation and booking.
+- [x] Add always-accessible consultation flow and prevent duplicate demo requests.
+- [x] Personalize home imagery from the completed style profile.
+- [x] Recreate supplied Our Work content with original photos and logos.
+- [x] Remove the top blue banner and verify navigation and booking.
