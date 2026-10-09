@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ArticlesRouteImport } from './routes/articles'
+import { Route as ConsultationRouteImport } from './routes/consultation'
 import { Route as DesignStudioRouteImport } from './routes/design-studio'
 import { Route as MaterialsRouteImport } from './routes/materials'
 import { Route as OurWorkRouteImport } from './routes/our-work'
@@ -30,6 +31,11 @@ const AboutRoute = AboutRouteImport.update({
 const ArticlesRoute = ArticlesRouteImport.update({
   id: '/articles',
   path: '/articles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultationRoute = ConsultationRouteImport.update({
+  id: '/consultation',
+  path: '/consultation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesignStudioRoute = DesignStudioRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/articles': typeof ArticlesRoute
+  '/consultation': typeof ConsultationRoute
   '/design-studio': typeof DesignStudioRoute
   '/materials': typeof MaterialsRoute
   '/our-work': typeof OurWorkRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/articles': typeof ArticlesRoute
+  '/consultation': typeof ConsultationRoute
   '/design-studio': typeof DesignStudioRoute
   '/materials': typeof MaterialsRoute
   '/our-work': typeof OurWorkRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/articles': typeof ArticlesRoute
+  '/consultation': typeof ConsultationRoute
   '/design-studio': typeof DesignStudioRoute
   '/materials': typeof MaterialsRoute
   '/our-work': typeof OurWorkRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/articles'
+    | '/consultation'
     | '/design-studio'
     | '/materials'
     | '/our-work'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/articles'
+    | '/consultation'
     | '/design-studio'
     | '/materials'
     | '/our-work'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/articles'
+    | '/consultation'
     | '/design-studio'
     | '/materials'
     | '/our-work'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ArticlesRoute: typeof ArticlesRoute
+  ConsultationRoute: typeof ConsultationRoute
   DesignStudioRoute: typeof DesignStudioRoute
   MaterialsRoute: typeof MaterialsRoute
   OurWorkRoute: typeof OurWorkRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/articles'
       fullPath: '/articles'
       preLoaderRoute: typeof ArticlesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultation': {
+      id: '/consultation'
+      path: '/consultation'
+      fullPath: '/consultation'
+      preLoaderRoute: typeof ConsultationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/design-studio': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ArticlesRoute: ArticlesRoute,
+  ConsultationRoute: ConsultationRoute,
   DesignStudioRoute: DesignStudioRoute,
   MaterialsRoute: MaterialsRoute,
   OurWorkRoute: OurWorkRoute,
